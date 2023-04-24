@@ -1,5 +1,6 @@
 package hello.jdbc_cozil.exception.basic;
 
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +18,7 @@ import java.sql.SQLException;
  * 런타임 예외는 해당 객체가 처리할 수 없는 예외는 무시, 즉 강제로 의존하지 않아도 된다.
  * 런타임 예외를 던지면 컨트롤러와 서비스에서 해당 예외에 대한 의존 관계가 발생하지 않는다.(중간 단계에서 코드 변경 x)
  */
+@Slf4j
 public class UncheckedAppTest {
 
     @Test
@@ -26,6 +28,15 @@ public class UncheckedAppTest {
                 .isInstanceOf(Exception.class);
     }
 
+    @Test
+    void printEx(){
+        Controller controller = new Controller();
+        try{
+            controller.request();
+        }catch (Exception e){
+            log.info("ex",e);
+        }
+    }
 
 
     static class Controller {
