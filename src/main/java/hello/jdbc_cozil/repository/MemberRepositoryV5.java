@@ -39,11 +39,16 @@ public class MemberRepositoryV5 implements MemberRepository{
     public Member findById(String memberId)  {
         String sql = "select * from member where member_id = ?";
        //query 단건 조회
+        // queryForObject(sql,RowMapper() interface ,parameter) -> 객체 자체를 반환하기 위해서는 RowMapper 인터페이스를 매개변수로 받아야 한다.
+
         return template.queryForObject(sql, memberRowMapper(), memberId);
 
     }
 
     private RowMapper<Member> memberRowMapper(){
+        //resultSet값을 Member 객체에 저장
+        //rowNum은 알아서 세주기 때문에 작성할 필요가 없다
+        //람다식을 사용하면 깔끔해진다.
         return(rs,rowNum)->{
             Member member = new Member();
             member.setMemberId(rs.getString("member_id"));

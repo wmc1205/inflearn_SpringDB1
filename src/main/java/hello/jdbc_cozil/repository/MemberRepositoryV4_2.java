@@ -14,6 +14,9 @@ import java.util.NoSuchElementException;
 
 /**
  * SQLExceptionTranslator 추가
+ * - DB에서 발생하는 오류코드를 스프링이 정의한 예외로 변환해주는 기능을 제공
+ * - 각 DB마다 발생하는 오류코드가 다 다르다. 따라서 DB를 바꿔줄 때 마다 오류코드도 모두 바꿔줘야 하는 번거로움이 발생하는데, 이를 해결해주는 것이
+ * SQLExceptionTranslator 이다.
  */
 
 @Slf4j
